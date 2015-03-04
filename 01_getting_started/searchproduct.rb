@@ -3,9 +3,12 @@ require 'selenium-webdriver'
 
 # Create a new Firefox session
 driver = Selenium::WebDriver.for(:firefox)
-# These two methods are not part of Driver in Ruby bindings
-# driver.implicit_wait(30)
-# driver.maximize_window
+# In the book, the methods .implicitly_wait()
+# and .maximize_window are called directly on the Driver
+# object.  In Ruby bindings, they are reached via the Options
+# returned from the Driver .manage method
+driver.manage.timeouts.implicit_wait = 30
+driver.manage.window.maximize
 
 # URL in book is a bit unstable, and may not always
 # be available
